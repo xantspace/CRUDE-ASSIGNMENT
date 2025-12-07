@@ -81,30 +81,46 @@
     <form class="add-form" action="{% url 'todo:add_todo' %}" method="post">
       {% csrf_token %}
       <input type="text" name="text" placeholder="Add a new task..." required />
+      <input
+        type="text"
+        name="description"
+        placeholder="Add a description..."
+        required
+      />
       <button type="submit">Add</button>
     </form>
 
     <!-- List of existing todos -->
+
     <ul class="todo-list">
       {% for todo in todos %}
       <li class="todo-item {% if todo.completed %}completed{% endif %}">
         <span>{{ todo.title }}</span>
+        <span>{{ todo.description }}</span>
         <div class="actions">
+
           <!-- Toggle complete/incomplete -->
+
+
           <a href="{% url 'todo:toggle_todo' todo.id %}" class="toggle-btn">
-            {% if todo.completed %}Pending{% else %}Completed{% endif %}
+            {% if todo.completed %}Pending{% else %}completed{% endif %}
           </a>
+
           <!-- Edit (Note: The edit view redirects immediately, a modal or separate page would be a better UX) -->
+         
+         
           <form
             action="{% url 'todo:edit_todo' todo.id %}"
             method="post"
-            style="display: inline"
+            style="display: inline";
           >
             {% csrf_token %}
             <input type="text" name="text" value="{{ todo.title }}" hidden />
-            <!-- A simple prompt could be used here, or a more complex form -->
+
           </form>
-          <!-- Delete -->
+
+          <!-- Delete from the form-->
+
           <a href="{% url 'todo:delete_todo' todo.id %}" class="delete-btn"
             >Delete</a
           >
