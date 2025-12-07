@@ -77,7 +77,12 @@
   <body>
     <h1>My Todo List</h1>
 
-    <!-- Form to add a new todo -->
+     <!--Credentials for admin section-->
+    <!--Username: Promise -->
+    <!--Password: Assignment-->
+
+    <!-- Form to add a new todo task to the list -->
+
     <form class="add-form" action="{% url 'todo:add_todo' %}" method="post">
       {% csrf_token %}
       <input type="text" name="text" placeholder="Add a new task..." required />
@@ -90,7 +95,7 @@
       <button type="submit">Add</button>
     </form>
 
-    <!-- List of existing todos -->
+    <!-- List of existing todos added-->
 
     <ul class="todo-list">
       {% for todo in todos %}
@@ -99,7 +104,7 @@
         <span>{{ todo.description }}</span>
         <div class="actions">
 
-          <!-- Toggle complete/incomplete -->
+          <!-- Toggle complete/incomplete button -->
 
 
           <a href="{% url 'todo:toggle_todo' todo.id %}" class="toggle-btn">
@@ -128,5 +133,6 @@
       <li class="todo-item">No to-do items yet.</li>
       {% endfor %}
     </ul>
+   
   </body>
 </html>
