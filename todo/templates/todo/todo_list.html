@@ -105,8 +105,6 @@
           <a href="{% url 'todo:toggle_todo' todo.id %}" class="toggle-btn">
             {% if todo.completed %}Pending{% else %}completed{% endif %}
           </a>
-
-          <!-- Edit (Note: The edit view redirects immediately, a modal or separate page would be a better UX) -->
          
          
           <form
