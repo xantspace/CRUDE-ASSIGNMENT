@@ -20,7 +20,6 @@ def toggle_todo(request, todo_id):
     todo.completed = not todo.completed
     todo.save()
     return redirect('todo:todo_list')
-# You should implement a proper update view
 
 def edit_todo(request, todo_id):
     todo = get_object_or_404(Todo, id=todo_id)
