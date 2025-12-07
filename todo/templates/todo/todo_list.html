@@ -1,83 +1,16 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todo App</title>
-    <style>
-      body {
-        font-family: sans-serif;
-        max-width: 800px;
-        margin: 40px auto;
-        padding: 20px;
-        background-color: #f4f4f9;
-        color: #333;
-      }
-      h1 {
-        text-align: center;
-        color: #4a4a4a;
-      }
-      .add-form {
-        display: flex;
-        margin-bottom: 20px;
-      }
-      .add-form input[type="text"] {
-        flex-grow: 1;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 4px 0 0 4px;
-      }
-      .add-form button {
-        padding: 10px 15px;
-        border: none;
-        background-color: #5cb85c;
-        color: white;
-        border-radius: 0 4px 4px 0;
-        cursor: pointer;
-      }
-      .todo-list {
-        list-style: none;
-        padding: 0;
-      }
-      .todo-item {
-        display: flex;
-        align-items: center;
-        padding: 10px;
-        background-color: white;
-        border-bottom: 1px solid #eee;
-      }
-      .todo-item.completed span {
-        text-decoration: line-through;
-        color: #aaa;
-      }
-      .todo-item span {
-        flex-grow: 1;
-      }
-      .todo-item .actions {
-        display: flex;
-        gap: 10px;
-      }
-      .todo-item a {
-        text-decoration: none;
-        padding: 5px 10px;
-        border-radius: 3px;
-        color: white;
-      }
-      .toggle-btn {
-        background-color: #f0ad4e;
-      }
-      .edit-btn {
-        background-color: #337ab7;
-      }
-      .delete-btn {
-        background-color: #d9534f;
-      }
-    </style>
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
   </head>
   <body>
     <h1>My Todo List</h1>
 
-     <!--Credentials for admin section-->
+    <!--Credentials for admin section-->
     <!--Username: Promise -->
     <!--Password: Assignment-->
 
@@ -103,23 +36,20 @@
         <span>{{ todo.title }}</span>
         <span>{{ todo.description }}</span>
         <div class="actions">
-
           <!-- Toggle complete/incomplete button -->
-
 
           <a href="{% url 'todo:toggle_todo' todo.id %}" class="toggle-btn">
             {% if todo.completed %}Pending{% else %}completed{% endif %}
           </a>
-         
-         
+
           <form
             action="{% url 'todo:edit_todo' todo.id %}"
             method="post"
-            style="display: inline";
+            style="display: inline"
+            ;
           >
             {% csrf_token %}
             <input type="text" name="text" value="{{ todo.title }}" hidden />
-
           </form>
 
           <!-- Delete from the form-->
@@ -133,6 +63,5 @@
       <li class="todo-item">No to-do items yet.</li>
       {% endfor %}
     </ul>
-   
   </body>
 </html>
