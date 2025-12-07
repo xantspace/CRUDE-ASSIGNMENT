@@ -28,29 +28,40 @@
       <button type="submit">Add</button>
     </form>
 
-    <!-- List of existing todos added-->
+    <!-- List of existing todos that are added-->
 
     <ul class="todo-list">
       {% for todo in todos %}
       <li class="todo-item {% if todo.completed %} completed {% endif %}">
-        <span>{{ todo.title }}</span>
-        <span>{{ todo.description }}</span>
+        <div class="todo-text">
+          <span>{{ todo.title }}</span>
+          <small>{{ todo.description }}</small>
+        </div>
+
+        <form
+          class="edit-form"
+          action="{% url 'todo:edit_todo' todo.id %}"
+          method="post"
+          style="display: none"
+        >
+          {% csrf_token %}
+          <input type="text" name="text" value="{{ todo.title }}" required />
+          <input
+            type="text"
+            name="description"
+            value="{{ todo.description }}"
+            required
+          />
+          <button type="submit">Save</button>
+        </form>
+
         <div class="actions">
           <!-- Toggle complete/incomplete button -->
-
           <a href="{% url 'todo:toggle_todo' todo.id %}" class="toggle-btn">
             {% if todo.completed %}Pending{% else %}completed{% endif %}
           </a>
 
-          <form
-            action="{% url 'todo:edit_todo' todo.id %}"
-            method="post"
-            style="display: inline"
-            ;
-          >
-            {% csrf_token %}
-            <input type="text" name="text" value="{{ todo.title }}" hidden />
-          </form>
+          <a href="{% url 'todo:edit_todo' todo.id %}" class="edit-btn">Edit</a>
 
           <!-- Delete from the form-->
 

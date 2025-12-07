@@ -12,6 +12,7 @@ h1 {
 }
 .add-form {
   display: flex;
+  gap: 10px;
   margin-bottom: 20px;
 }
 .add-form input[type="text"] {
@@ -43,8 +44,33 @@ h1 {
   text-decoration: line-through;
   color: #aaa;
 }
-.todo-item span {
+.todo-item .todo-text {
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
+}
+.todo-item .todo-text small {
+  color: #777;
+  font-size: 0.9em;
+}
+.todo-item .edit-form {
+  flex-grow: 1;
+  display: flex;
+  gap: 5px;
+}
+.todo-item .edit-form input {
+  flex-grow: 1;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+.todo-item .edit-form button {
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
 }
 .todo-item .actions {
   display: flex;
